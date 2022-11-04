@@ -24,7 +24,10 @@ const listingSchema = mongoose.Schema({
     date: {
         type: Date,
         require: true
-    }
+    },
+
+    image: String,
+
 })
 
 const Listing = mongoose.model('Listing', listingSchema)

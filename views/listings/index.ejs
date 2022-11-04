@@ -1,21 +1,24 @@
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home - Staycation</title>
-</head>
-<body>
+<title>Home | Staycation</title>
+<% layout('/layouts/boilerplate') -%>
+
+<div class="mt-5">
     <% for(let list of lists) { %>
-        <div>
-            <h1><%= list.name %></h1>
-            <strong><p>Uploader: </strong><%= list.uploader %></p>
-            <strong></strong><p><%= list.description %></p>
-            <strong><p>Address: </strong><%= list.address %></p>
+        <div class="d-inline-block m-3">
+            <div class="card mb-3" style="width: 18rem;">
+                <img src="<%= list.image%>" class="card-img-top img-fluid" alt="Image">
+                <div class="card-body">
+                    <h5 class="card-title"><%= list.name%></h5>
+                    <p class="card-text"><%= list.description %></p>
+
+                    <div class="d-grid gap-2">
+                        <a href="/listings/<%= list._id %>" class="btn btn-primary w-100%">View</a>
+                    </div>
+                </div>
+            </div>
         </div>
+
     <% } %>
-    
-</body>
-</html>
+
+</div>
+
