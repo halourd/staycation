@@ -2,15 +2,15 @@
 <title>Home | Tootle</title>
 
 <% layout('/layouts/boilerplate') -%>
-<div class="d-flex">
-    <h1 class="mt-5">Welcome!</h1>
+<div class="d-flex justify-content-center">
+    <h1 class="mt-5 fw-bold">Welcome!</h1>
 </div>
 
 <div class="mt-5 d-flex justify-content-center flex-wrap ">
     <% for(let list of lists) { %>
         <div class="d-inline-block m-3">
             <div class="card mb-3" style="width: 18rem;">
-                <img src="<%= list.image%>" class="card-img-top img-fluid" alt="Image">
+                <img src="<%= list.image%>" class="card-img-top img-fluid" alt="Image" unselectable="on">
                 <div class="card-body">
                     <h5 class="card-title fw-bold fs-5"><%= list.name%></h5>
                     <p class="card-text text-truncate"><%= list.description %></p>

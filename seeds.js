@@ -8,7 +8,7 @@ const {places, descriptors} = require('./seeds/seedHelpers')
 
 mongoose.connect('mongodb://localhost:27017/staycation')
     .then(() => {
-        console.log('[Seeds.js] Connection open')
+        console.log('[seeds.js] Connection open')
     })
     .catch(err => {
         console.log('[ERROR] Something wrong happened.')
@@ -25,7 +25,7 @@ const gen_username = () => {
 
 const seedDB = async () => {
     await Listing.deleteMany({})
-    for(let i = 0; i < 10; i++){
+    for(let i = 0; i < 10*10; i++){
         const rand_100 = Math.floor(Math.random() * 1000)
         const newListing = new Listing({
             name: `${sample(descriptors)} ${sample(places)}`,
@@ -43,4 +43,5 @@ const seedDB = async () => {
 
 seedDB().then(() => {
     mongoose.connection.close();
+    console.log("[SUCCESS] DB populated.")
 });

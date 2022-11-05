@@ -9,11 +9,11 @@ const methodOverride = require('method-override')
 
 mongoose.connect('mongodb://localhost:27017/staycation')
     .then(() => {
-        console.log("=> Connected to DB.")
+        console.log("[SUCCESS] Connected to DB.")
     })
     .catch(err => {
         console.log("=> Ooops, there was an error: \n")
-        console.log(err)
+        console.log("[ERROR] " + err)
     });
 
 app.engine('ejs', ejsMate)
@@ -33,7 +33,7 @@ app.post('/listings', async (req, res) => {
     const newListingRequest = new Listing(req.body);
     const newListing = Object.assign(newListingRequest, {date: new Date(), image: `https://images.unsplash.com/photo-1416339306562-f3d12fefd36f`})
     await newListing.save();
-    console.log(newListing)
+    console.log("[INFO] "+newListing)
     res.redirect(`/listings/${newListing._id}`)
 })
 
@@ -65,7 +65,7 @@ app.put('/listings/:id', async (req, res) => {
     const editRequest = Object.assign(editListRequest, {date: new Date(), image: `https://images.unsplash.com/photo-1416339306562-f3d12fefd36f`})
     // const dataDeleted = id;
     const list_item = await Listing.findByIdAndUpdate(id, editRequest, {runValidators: true, new: true});
-    console.log(list_item)
+    console.log("[MODIFY] "+list_item)
     res.redirect(`/listings/${list_item._id}`);
 })
 
