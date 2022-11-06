@@ -1,6 +1,6 @@
 <title>Add new Listing | Tootle</title>
 <% layout('/layouts/boilerplate') -%>
-    
+    <div class="container">
     <form class="row g-3 container my-5" action="/listings" method="post">
         <h1 class="fw-bold">Add a Listing</h1>
         <div class="col-md-6">
@@ -9,7 +9,7 @@
         </div>
         <div class="col-md-6">
           <label for="address" class="form-label">Address</label>
-          <input type="text" name="address" class="form-control" id="address" required>
+          <input type="text" name="address" class="form-control tags" id="address" autocomplete="off" required>
         </div>
         <div class="col-12">
           <label for="description" class="form-label">Description</label>
@@ -20,4 +20,34 @@
           <button type="submit" class="btn btn-primary px-4">Add</button>
           <a href="/listings" class="btn btn-danger">Cancel</a>
         </div>
+
+        <input type="hidden" name="lat" id="lat" value="<%=city_list[12].address%>">
+        <input type="hidden" name="lng" id="lng" value="<%=city_list[12].address%>">
+
       </form>
+    </div>
+
+
+      <script>  
+
+        var location_info = <%-city_list%>;
+        var search_result = () => {
+            let list_loc = [];
+            const d = ()=>{
+              for(let list of location_info){
+                list_loc.push(list.city+", "+list.admin_name)
+              }
+            }
+            d();
+            return list_loc;
+          };
+
+        var lists = search_result();
+          
+        $( function() {
+          $( ".tags" ).autocomplete({
+            source: lists
+          });
+        } );
+
+    </script>

@@ -17,16 +17,31 @@ const listingSchema = mongoose.Schema({
     },
 
     address: {
-        type: String,
-        require: true
+        addr: {
+            type: String,
+            require: true
+        },
+        lat: {
+            type: Number,
+            require: true
+        },
+        lng: {
+            type: Number,
+            require: true
+        }
     },
-
     date: {
         type: Date,
         require: true
     },
 
     image: String,
+
+    reviews: {
+        type: Array,
+        default: [],
+        require: false
+    }
 
 })
 

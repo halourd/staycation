@@ -3,7 +3,7 @@
 <div class="container my-5">
     <h1 class="fw-bold"><%= list_item.name %> </h1>
     <p> <strong> Uploaded By: </strong><em><%= list_item.uploader %></em></p>
-    <p><%= list_item.address %></p>
+    <p><%= list_item.address.addr %></p>
     
     <div class="h-50 d-inline-block shadow" style="width: 100%;">
         <img src="<%=list_item.image%>" class="img-fluid rounded-2" alt="">
@@ -21,9 +21,49 @@
     <div class="d-flex flex-column">
         <a href="/listings" class="btn btn-primary my-3">Show All Listings</a>
     </div>
+
+    <div id="lat-div" data-lat="<% list_item.lat %>"></div>
+    <div id="lng-div" data-lng="<% list_item.lng %>"></div>
     <hr>
     <h3>Location is here</h3>
+    <div id="map" style="height: 400px; width: 100%;"></div>
+
     <hr>
     <!-- REVIEWS -->
     <h3>Reviews</h3>
+    <h5><%= list_item.reviews.username%></h5>
+    <p><%= list_item.reviews.comment%></p>
+    
+    <% for(let review of list_item.reviews) { %>
+        <div class="d-flex flex-row justify-items-center shadow-sm rounded-2 p-2">
+            <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" class="p-1 rounded-circle" style="width: 90px;" alt="">
+            <div class="d-flex flex-column align-items-center justify-content-center px-4">
+                <p><b><%=review.username%></b></p>
+                <p><%=review.comment%></p>
+            </div>
+
+        </div>
+    <% } %>
+    
+
 </div>
+
+<script>
+    function initMap() {
+        var get_Lat = parseFloat(`<%= list_item.address.lat %>`);
+        var get_Lng = parseFloat(`<%= list_item.address.lng %>`);
+        var myLatLng = {lat: get_Lat, lng: get_Lng}
+        const map = new google.maps.Map(document.getElementById("map"), {
+            zoom: 15,
+            center: myLatLng,
+        });
+        new google.maps.Marker({
+            position: myLatLng,
+            map,
+            title: "Hello World!",
+        });
+    }
+</script>
+
+    
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDY6AGuP_dFrCJn-MQYexx_-_KjHwBRWgY&callback=initMap&v=weekly"></script>
