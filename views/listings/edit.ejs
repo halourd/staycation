@@ -1,7 +1,7 @@
 <title>Edit - <%= list_item.name%> | Tootle</title>
 <% layout('/layouts/boilerplate') -%>
     
-  <div class="container">
+  <div class="container shadow-lg rounded-3" style="padding: 60px; margin-top: 40px; margin-bottom: 40px">
     <form class="row g-3 my-5" action="/listings/<%= list_item._id %>?_method=PUT" method="post">
         <h1 class="fw-bold">Edit Listing</h1>
         <div class="col-md-6">
@@ -18,8 +18,8 @@
         </div>
 
         <div class="col-12">
-          <button type="submit" class="btn btn-success px-5">Save</button>
-          <a href="/listings/<%= list_item._id %>" class="btn btn-danger px-5">Cancel</a>
+          <button type="submit" class="btn btn-success px-5 my-1">Save</button>
+          <a href="/listings/<%= list_item._id %>" class="btn btn-danger px-5 my-1">Cancel</a>
         </div>
         <input type="hidden" name="lat" id="lat" value="<%=list_item.address.lat%>">
         <input type="hidden" name="lng" id="lng" value="<%=list_item.address.lng%>">
