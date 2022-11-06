@@ -20,4 +20,11 @@ or
 localhost:3000/
 ```
 
+#### Technologies used:
+- Node.js 
+- Express.js
+- MongoDB
+- Mongoose
+
+
 ## Thank you very much! <3
